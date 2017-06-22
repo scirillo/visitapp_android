@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00838f</color>
+    <color name="colorPrimaryDark">#006064</color>
+    <!--  <color name="colorAccent">#303f9f</color>-->
+    <color name="colorAccent">#006064</color>
+     <color name="baseRed">#E50000</color>
+     <color name="baseBlack">#000000</color>
+     <color name="baseYellow">#F8F9E7</color>
+     <color name="lightGreen2">#dcedc8</color>
+     <color name="lightGreen3">#aed581</color>
+     <color name="transparent_white">#40FFFFFF</color>
+     <color name="background_list">#e0f7fa</color>
+     <color name="white">#FFFFFF</color>
+     <color name="teal1">#1de9b6</color>
+     <color name="card_selected">#b2ebf2</color>
+
+    <color name="light_gray">#c2c7cc</color>
+    <color name="dark_gray">#3d454c</color>
+    <color name="dark_gray_pressed">#373e44</color>
+    <color name="darker_gray">#1f2226</color>
+ </resources>
