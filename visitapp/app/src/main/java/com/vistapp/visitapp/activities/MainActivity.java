@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity
             @Override public void onClick(View v) {
                 if (drawer.isDrawerVisible(START)) {
                     drawer.closeDrawer(START);
+                    asd
                 } else {
                     drawer.openDrawer(START);
                 }
