@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:title="Medicos">
+            <menu>
+                <item
+                    android:id="@+id/nav_camera"
+                    android:icon="@drawable/ic_event_note_black_24dp"
+                    android:title="@string/dr_list" />
+            </menu>
+        </item>
+        <item
+            android:id="@+id/week_1"
+            android:icon="@drawable/week_1"
+            android:title="@string/monday" />
+        <item
+            android:id="@+id/week_2"
+            android:icon="@drawable/week_2"
+            android:title="@string/tuesday" />
+        <item
+            android:id="@+id/week_3"
+            android:icon="@drawable/week_3"
+            android:title="@string/wednesday" />
+        <item
+            android:id="@+id/week_4"
+            android:icon="@drawable/week_4"
+            android:title="@string/thursday" />
+        <item
+            android:id="@+id/week_5"
+            android:icon="@drawable/week_5"
+            android:title="@string/friday" />
+    </group>
+
+    <item android:title="Usuario">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="@string/news" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/logout" />
+        </menu>
+    </item>
+
+</menu>

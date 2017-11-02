@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="call_actions">
+        <item>Finalizar</item>
+        <item>Cancelar</item>
+    </string-array>
+</resources>

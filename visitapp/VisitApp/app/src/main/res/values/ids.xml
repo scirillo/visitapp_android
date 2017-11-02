@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="week_1" type="id">week_1</item>
+    <item name="week_2" type="id">week_2</item>
+    <item name="week_3" type="id">week_3</item>
+    <item name="week_4" type="id">week_4</item>
+    <item name="week_5" type="id">week_5</item>
+    <item name="week_6" type="id">week_6</item>
+    <item name="week_7" type="id">week_7</item>
+
+    <item name="btn_add_doctor" type="id">btn_add_doctor</item>
+    <item name="item_value_clinic" type="id">item_value_clinic</item>
+    <item name="item_value_date" type="id">item_value_date</item>
+    <item name="item_value_dir" type="id">item_value_dir</item>
+    <item name="item_value_email" type="id">item_value_email</item>
+    <item name="item_value_info" type="id">item_value_info</item>
+    <item name="item_value_name" type="id">item_value_info</item>
+    <item name="item_value_phone" type="id">item_value_phone</item>
+    <item name="sp_doctors" type="id">sp_doctors</item>
+
+</resources>
