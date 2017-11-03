@@ -17,5 +17,10 @@
     <item name="item_value_name" type="id">item_value_info</item>
     <item name="item_value_phone" type="id">item_value_phone</item>
     <item name="sp_doctors" type="id">sp_doctors</item>
+    <item name="signInPasswordWrapper" type="id">signInPasswordWrapper</item>
+    <item name="signInUsernameWrapper" type="id">signInUsernameWrapper</item>
+    <item name="signInButton" type="id">signInButton</item>
+    <item name="forgotYourPassword" type="id">forgotYourPassword</item>
+    <item name="appTitleTextView" type="id">appTitleTextView</item>
 
 </resources>

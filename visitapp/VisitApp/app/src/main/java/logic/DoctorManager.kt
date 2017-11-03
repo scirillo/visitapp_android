@@ -4,9 +4,7 @@ package logic
 import android.content.Context
 import model.DoctorModel
 import utils.SingletonHolder
-import utils.addDay
-import java.text.SimpleDateFormat
-import java.util.Calendar
+import extensions.addDay
 import kotlin.collections.ArrayList
 
 /**

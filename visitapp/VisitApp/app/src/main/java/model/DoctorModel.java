@@ -77,7 +77,6 @@ public class DoctorModel implements Serializable, Comparable<DoctorModel>{
 
     public String getId() {
         return id;
-
     }
 
     public boolean isAssigned() {
