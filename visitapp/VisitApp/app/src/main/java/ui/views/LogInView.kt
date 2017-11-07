@@ -30,10 +30,11 @@ class LogInView : ViewBinder<LogInActivity, User, Boolean> {
         return t.UI {
             relativeLayout {
                 lparams(width = matchParent, height = matchParent)
-                backgroundResource = R.color.primaryBackgroundColor
+                backgroundResource = R.color.background_list
 
                 textView {
                     id = R.id.appTitleTextView
+                    visibility = View.GONE
                     textResource = R.string.app_title
                     textSize = 25f
                     textColor = color(R.color.defaultTextColor)
@@ -41,11 +42,22 @@ class LogInView : ViewBinder<LogInActivity, User, Boolean> {
                 }.lparams {
                     width = wrapContent
                     height = wrapContent
-                    topMargin = dip(80)
                     centerHorizontally()
                 }
 
                 relativeLayout {
+                    linearLayout {
+                        id = R.id.singInLogo
+                            layoutParams = LinearLayout.LayoutParams(
+                                    dip(250), dip(250))
+                        imageView{
+                            image = drawable(R.drawable.logo_drselby)
+                        }
+
+                    }.lparams {
+                        topMargin = dip(10)
+                        centerHorizontally()
+                    }
                     linearLayout {
                         id = R.id.signInUsernameWrapper
                         mTilemail = textInputLayout {
@@ -62,16 +74,17 @@ class LogInView : ViewBinder<LogInActivity, User, Boolean> {
                                 singleLine = true
                                 textSize = 18f
                                 textChangedListener {
-                                    onTextChanged { text, start, before, count ->
-                                        mTilemail.isErrorEnabled = false
+                                    onTextChanged { _, _, _, _ -> mTilemail.isErrorEnabled = false
                                     }
                                 }
                             }
                         }
 
                     }.lparams {
+                        topMargin = dip(20)
                         width = dip(250)
                         centerHorizontally()
+                        below(R.id.singInLogo)
                     }
 
                     linearLayout {

@@ -24,4 +24,5 @@
     <item name="appTitleTextView" type="id">appTitleTextView</item>
     <item name="list" type="id">list</item>
     <item name="fab" type="id">fab</item>
+    <item name="singInLogo" type="id">singInLogo</item>
 </resources>
