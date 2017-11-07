@@ -12,7 +12,7 @@ import com.charly.visitapp.R
 import extensions.*
 import model.User
 import org.jetbrains.anko.*
-import ui.viewlisteners.ViewBinder
+import ui.ViewBinder
 
 /**
  * Created by Santiago Cirillo on 11/3/17.
@@ -26,7 +26,7 @@ class LogInView : ViewBinder<LogInActivity, User, Boolean> {
     lateinit var mTilemail: TextInputLayout
     lateinit var mTilPassword: TextInputLayout
 
-    override fun bind(t: LogInActivity, u: User, b: Boolean): View {
+    override fun bind(t: LogInActivity, u: User?, b: Boolean?): View {
         return t.UI {
             relativeLayout {
                 lparams(width = matchParent, height = matchParent)

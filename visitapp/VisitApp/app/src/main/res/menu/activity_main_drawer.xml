@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item android:title="Medicos">
+        <item android:title="@string/doctors">
             <menu>
                 <item
                     android:id="@+id/nav_camera"
@@ -32,7 +32,7 @@
             android:title="@string/friday" />
     </group>
 
-    <item android:title="Usuario">
+    <item android:title="@string/user">
         <menu>
             <item
                 android:id="@+id/nav_share"

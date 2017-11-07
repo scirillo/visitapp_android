@@ -22,5 +22,6 @@
     <item name="signInButton" type="id">signInButton</item>
     <item name="forgotYourPassword" type="id">forgotYourPassword</item>
     <item name="appTitleTextView" type="id">appTitleTextView</item>
-
+    <item name="list" type="id">list</item>
+    <item name="fab" type="id">fab</item>
 </resources>

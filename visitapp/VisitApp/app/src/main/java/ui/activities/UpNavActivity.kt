@@ -1,6 +1,6 @@
 package com.vistapp.visitapp.activities
 
-import ui.BaseActivity
+import ui.activities.BaseActivity
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import com.charly.visitapp.R
@@ -14,6 +14,7 @@ var FRAGMENT_ID = "fragment_id"
 var FRAGMENT_DR_LIST = 1
 var FRAGMENT_DETAIL = 3
 var WEB_VIEW = 2
+var ARG_DOCTOR = "arg_doctor"
 class UpNavActivity : BaseActivity() {
     private val doctorModel: DoctorModel? = null
 
@@ -30,13 +31,14 @@ class UpNavActivity : BaseActivity() {
             val navId = intent.getIntExtra(FRAGMENT_ID, 1)
             when (navId) {
                 FRAGMENT_DR_LIST -> {
-                    toolbar.title = "Lista de medicos"
+                    toolbar.title = getString(R.string.doctors_list)
                     supportFragmentManager.beginTransaction().replace(R.id.fragment, DoctorListFragment.newInstance()).commit()
                 }
                 WEB_VIEW -> supportFragmentManager.beginTransaction().replace(R.id.fragment, WebViewFragment.newInstance()).commit()
                 FRAGMENT_DETAIL -> {
                     val dayWeek = intent.getIntExtra(Constants.DAY_WEEK, 0)
-                    supportFragmentManager.beginTransaction().replace(R.id.fragment, DoctorDetailFragment.newInstance(DoctorModel(), true, dayWeek)).commit()
+                    val doctor = intent.getSerializableExtra(ARG_DOCTOR) as DoctorModel? ?: DoctorModel()
+                    supportFragmentManager.beginTransaction().replace(R.id.fragment, DoctorDetailFragment.newInstance(doctor, true, dayWeek)).commit()
                 }
             }
         }

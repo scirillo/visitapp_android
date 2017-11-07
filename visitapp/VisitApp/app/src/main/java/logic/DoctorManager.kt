@@ -13,17 +13,17 @@ import kotlin.collections.ArrayList
 
 class DoctorManager private constructor(context: Context) {
     private val list = ArrayList<DoctorModel>()
-    init {}
-        companion object : SingletonHolder<DoctorManager, Context>(::DoctorManager)
-
-
-        fun persistDoctorList(modelList: List<DoctorModel>) {
-        modelList.filterNot { list.contains(it) }
-                .forEach { list.add(it) }
+    companion object : SingletonHolder<DoctorManager, Context>(::DoctorManager)
+    fun persistDoctorList(modelList: List<DoctorModel>) {
+    modelList.filterNot { list.contains(it) }.forEach { list.add(it) }
     }
 
     fun removeDoctor(model: DoctorModel) {
         list.remove(model)
+    }
+
+    fun removeDoctors(deleteList: List<DoctorModel>, day: Int) {
+        deleteList.filter { it.date.equals(addDay(day), ignoreCase = true) }.forEach { removeDoctor(it) }
     }
 
     fun addDoctor(model: DoctorModel) {
@@ -42,11 +42,7 @@ class DoctorManager private constructor(context: Context) {
     }
 
     fun removeAssignedDoctors(deleteList: ArrayList<DoctorModel>, day: Int) {
-        for (model in deleteList) {
-            if (model.date.equals(addDay(day))) {
-                unassingDoctor(model)
-            }
-        }
+        deleteList.filter { it.date == addDay(day) }.forEach { unassingDoctor(it) }
     }
 
     private fun unassingDoctor(model: DoctorModel) {
@@ -55,16 +51,8 @@ class DoctorManager private constructor(context: Context) {
         list.add(model)
     }
 
-
-    fun removeDoctors(deleteList: List<DoctorModel>, day: Int) {
-        deleteList
-                .filter { it.date.equals(addDay(day), ignoreCase = true) }
-                .forEach { removeDoctor(it) }
-    }
-
     fun getDoctorListPerDay(day: Int): List<DoctorModel> {
-        val auxList = list.filterTo(ArrayList<DoctorModel>()) { it.date.equals(addDay(day), ignoreCase = true) }
-        return auxList
+        return list.filterTo(ArrayList()) { it.date.equals(addDay(day), ignoreCase = true) }
     }
 
     fun getDoctorAssignedPerDay(day: Int): ArrayList<DoctorModel> {

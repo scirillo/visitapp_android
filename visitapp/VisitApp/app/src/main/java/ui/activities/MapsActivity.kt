@@ -1,6 +1,5 @@
 package com.vistapp.visitapp.activities
 
-import ui.BaseActivity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
@@ -9,7 +8,6 @@ import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.widget.ImageView
 import com.charly.visitapp.R
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -18,24 +16,28 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import com.vistapp.visitapp.fragments.DoctorDetailFragment
 import com.vistapp.visitapp.utils.Constants
-import model.DoctorModel
+import io.realm.Realm
+import io.realm.RealmConfiguration
 import logic.DoctorManager
+import model.DoctorModel
+import ui.activities.BaseActivity
+
 
 class MapsActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
-    override fun onMarkerClick(marker: Marker?): Boolean {
-        // Retrieve the data from the marker.
-        var doctor =  marker!!.tag as DoctorModel
-        supportFragmentManager.beginTransaction().replace(R.id.fragment, DoctorDetailFragment.newInstance(doctor,
-                false, 0)).commit()
-        return false
-    }
-
     private var mMap: GoogleMap? = null
     private var doctor: DoctorModel? = null
     private var allDoctors: List<DoctorModel>? = null
 
+    override fun onMarkerClick(marker: Marker?): Boolean {
+        // Retrieve the data from the marker.
+        var doctor = marker!!.tag as DoctorModel
+        val intent = Intent(this, UpNavActivity::class.java)
+        intent.putExtra(FRAGMENT_ID, FRAGMENT_DETAIL)
+        intent.putExtra(ARG_DOCTOR, doctor)
+        startActivity(intent)
+        return false
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,13 +49,20 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClick
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
+        //get user if it's already saved
+        val realmConfig = RealmConfiguration.Builder(this).deleteRealmIfMigrationNeeded().build()
+        Realm.setDefaultConfiguration(realmConfig)
+
         doctor = intent!!.getSerializableExtra(Constants.DOCTOR) as DoctorModel
 
         allDoctors = DoctorManager.getInstance(baseContext).getDoctorList()
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+
         val mapFragment = supportFragmentManager
                 .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+
     }
 
 
@@ -81,31 +90,32 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClick
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mMap!!.setOnMarkerClickListener(this)
         // Add a marker in Sydney and move the camera
         val sydney = LatLng(doctor!!.location.latitude, doctor!!.location.longitude)
         //    LatLng sydney = new LatLng(-33.852, 151.211);
-       var marker =  mMap!!.addMarker(MarkerOptions()
+        var marker = mMap!!.addMarker(MarkerOptions()
                 .position(sydney)
                 .title(doctor!!.name)
                 .snippet(doctor!!.clinic)
                 .icon(BitmapDescriptorFactory
                         .fromResource(R.mipmap.ic_launcher)))
-        marker.tag = doctor
         marker.showInfoWindow()
+        marker.tag = doctor
         mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15.0f))
 
         for (model in allDoctors!!) {
-            mMap!!.addMarker(MarkerOptions()
+            var m = mMap!!.addMarker(MarkerOptions()
                     .position(LatLng(model.location.latitude, model.location.longitude))
                     .title(model.name)
                     .snippet(model.clinic)
                     .icon(BitmapDescriptorFactory
                             .fromResource(R.mipmap.ic_launcher)))
-
+            m.tag = model
         }
 
         val waze = findViewById<android.widget.ImageView>(R.id.btn_waze) as ImageView
-        waze.setOnClickListener{openWaze()}
+        waze.setOnClickListener { openWaze() }
         // mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 

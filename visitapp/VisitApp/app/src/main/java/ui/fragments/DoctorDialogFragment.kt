@@ -37,8 +37,6 @@ class DoctorDialogFragment : DialogFragment, DateSelectedListener {
         this.listener = listener
     }
 
-    constructor()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
@@ -75,17 +73,18 @@ class DoctorDialogFragment : DialogFragment, DateSelectedListener {
     }
 
     private fun checkFields(): Boolean {
-        return !(TextUtils.isEmpty(mDate!!.text.toString()) || TextUtils.isEmpty(mName!!.text.toString()) || TextUtils.isEmpty(mDir!!.text.toString())
-                || TextUtils.isEmpty(mClinic!!.text.toString()) || TextUtils.isEmpty(mInfo!!.text.toString()))
+        return !(TextUtils.isEmpty(mDate!!.text.toString()) ||
+                TextUtils.isEmpty(mName!!.text.toString()) ||
+                TextUtils.isEmpty(mDir!!.text.toString()) ||
+                TextUtils.isEmpty(mClinic!!.text.toString()) ||
+                TextUtils.isEmpty(mInfo!!.text.toString()))
     }
-
 
     override fun onDateSet(hourOfDay: Int, minute: Int) {
         if (mDate != null) mDate!!.text = hourOfDay.toString() + ":" + minute
     }
 
     companion object {
-
         fun newInstance(doctorModel: DoctorModel?, listener: UpdateFragmentListener): DoctorDialogFragment {
             val f = DoctorDialogFragment(listener)
             val args = Bundle()

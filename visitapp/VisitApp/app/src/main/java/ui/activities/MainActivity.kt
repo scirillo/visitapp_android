@@ -1,6 +1,5 @@
 package ui.activities
 
-import ui.BaseActivity
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -56,8 +55,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         // Set up the ViewPager with the sections adapter.
         mViewPager =  findViewById<android.support.v4.view.ViewPager>(R.id.container) as ViewPager
-        mViewPager!!.setOffscreenPageLimit(5)
-        mViewPager!!.setAdapter(mSectionsPagerAdapter)
+        mViewPager!!.offscreenPageLimit = 5
+        mViewPager!!.adapter = mSectionsPagerAdapter
 
         tabLayout = findViewById<android.support.design.widget.TabLayout>(R.id.tabs) as TabLayout
         tabLayout!!.setupWithViewPager(mViewPager)
@@ -85,7 +84,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.id.nav_camera -> {
                 val intent = Intent(this@MainActivity, UpNavActivity::class.java)
                 intent.putExtra(FRAGMENT_ID, 1)
-                startActivity(intent)            }
+                startActivity(intent)
+            }
             R.id.week_1 -> {
                 if (mViewPager != null) mViewPager!!.currentItem = 0
             }

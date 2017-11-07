@@ -23,9 +23,12 @@ public class DoctorModel implements Serializable, Comparable<DoctorModel>{
     private Location location;
     private String title;
 
-
     public Location getLocation() {
         return location;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     @Override
@@ -36,11 +39,6 @@ public class DoctorModel implements Serializable, Comparable<DoctorModel>{
         DoctorModel model = (DoctorModel) o;
 
         return id.equals(model.id);
-
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     @Override
@@ -98,6 +96,7 @@ public class DoctorModel implements Serializable, Comparable<DoctorModel>{
     public String getTime() {
         return time;
     }
+
     public String getName() {
         return name;
     }
@@ -120,7 +119,6 @@ public class DoctorModel implements Serializable, Comparable<DoctorModel>{
     public String getDate() {
         return date;
     }
-
 
     @Override
     public int compareTo(@NonNull DoctorModel o) {

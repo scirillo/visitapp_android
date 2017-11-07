@@ -15,7 +15,7 @@ import com.vistapp.visitapp.activities.FRAGMENT_DETAIL
 import com.vistapp.visitapp.activities.FRAGMENT_ID
 import com.vistapp.visitapp.activities.MapsActivity
 import com.vistapp.visitapp.activities.UpNavActivity
-import com.vistapp.visitapp.adapters.DoctorAdapter
+import ui.adapters.DoctorAdapter
 import com.vistapp.visitapp.listeners.RecyclerOnClickListener
 import com.vistapp.visitapp.listeners.UpdateFragmentListener
 import com.vistapp.visitapp.utils.Constants
@@ -27,8 +27,14 @@ import logic.DoctorManager
  */
 
 class DoctorFragment : android.support.v4.app.Fragment(), UpdateFragmentListener {
+    private var recyclerView: RecyclerView? = null
+    private val deleteList = arrayListOf<DoctorModel>()
+    private var adapter: DoctorAdapter? = null
+    private var spinner: ProgressBar? = null
+    private var fab: FloatingActionButton? = null
+    private var day: Int = 0
 
-    override fun updateAdapter(doctorModel: DoctorModel?) {
+    override fun updateAdapter(doctorModel: DoctorModel) {
         if (doctorModel != null) {
             DoctorManager.getInstance(context)!!.addDoctor(doctorModel)
         }
@@ -59,12 +65,6 @@ class DoctorFragment : android.support.v4.app.Fragment(), UpdateFragmentListener
         startActivity(maps)
     }
 
-    private var recyclerView: RecyclerView? = null
-    private var spinner: ProgressBar? = null
-    private var adapter: DoctorAdapter? = null
-    private var fab: FloatingActionButton? = null
-    private val deleteList = arrayListOf<DoctorModel>()
-    private var day: Int = 0
     private val addDeleteListener: View.OnClickListener = View.OnClickListener {
         if (fab!!.tag != null) {
             showDialog(fab!!.tag as DoctorModel)
@@ -93,8 +93,6 @@ class DoctorFragment : android.support.v4.app.Fragment(), UpdateFragmentListener
     }
 
     private fun openAddDoctorDialog() {
-       /* val alertDialog = DoctorDialogFragment.newInstance(null, DoctorFragment.this);
-        alertDialog.show(fragmentManager, "fragment_alert");*/
         val intent = Intent(context, UpNavActivity::class.java)
         intent.putExtra(FRAGMENT_ID, FRAGMENT_DETAIL)
         intent.putExtra(Constants.DAY_WEEK, day)

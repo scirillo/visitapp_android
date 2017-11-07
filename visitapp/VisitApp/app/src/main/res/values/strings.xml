@@ -49,4 +49,12 @@
     <string name="forgot_your_password_text">Forgot your password</string>
     <string name="app_title">Vistapp</string>
     <string name="signInError">Error happende :(</string>
+    <string name="doctors_list">Lista de medicos</string>
+    <string name="doctors">Medicos</string>
+    <string name="user">Usuario</string>
+    <string name="name">Nombre:</string>
+    <string name="dir">Direccion:</string>
+    <string name="visit_hour">Hora de visita:</string>
+    <string name="clinic">Clinica:</string>
+    <string name="info">Info:</string>
 </resources>

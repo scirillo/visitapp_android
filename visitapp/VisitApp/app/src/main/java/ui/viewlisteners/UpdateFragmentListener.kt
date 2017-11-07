@@ -7,7 +7,7 @@ import model.DoctorModel
  */
 
 interface UpdateFragmentListener {
-    fun updateAdapter(doctorModel: DoctorModel?)
+    fun updateAdapter(doctorModel: DoctorModel)
 
     fun itemChecked(doctorModel: DoctorModel?, isChecked: Boolean)
 

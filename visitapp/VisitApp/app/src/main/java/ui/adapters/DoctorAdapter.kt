@@ -1,4 +1,4 @@
-package com.vistapp.visitapp.adapters
+package ui.adapters
 
 import android.content.Context
 import android.support.v4.content.ContextCompat
@@ -11,11 +11,9 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import com.charly.visitapp.R
-
 import com.vistapp.visitapp.listeners.RecyclerOnClickListener
 import com.vistapp.visitapp.listeners.UpdateFragmentListener
 import model.DoctorModel
-
 /**
  * Created by Santiago Cirillo on 14/05/2017.
  */
@@ -29,7 +27,7 @@ class DoctorAdapter(items: ArrayList<DoctorModel>, private val showButton: Boole
 
 
     override fun getItemCount(): Int {
-        return values!!.size
+        return values.size
     }
 
     fun setFragmentListener(fragmentListener: UpdateFragmentListener) {
@@ -37,7 +35,7 @@ class DoctorAdapter(items: ArrayList<DoctorModel>, private val showButton: Boole
     }
 
     fun remove(item: DoctorModel) {
-        if (values!!.contains(item)) {
+        if (values.contains(item)) {
             values.remove(item)
             this.notifyDataSetChanged()
         }
@@ -55,7 +53,7 @@ class DoctorAdapter(items: ArrayList<DoctorModel>, private val showButton: Boole
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val mItem = values!![position]
+        val mItem = values[position]
         holder.item = mItem
         holder.mTitle.text = mItem.name
         holder.mSubTitle1.text = mItem.direction
@@ -67,7 +65,7 @@ class DoctorAdapter(items: ArrayList<DoctorModel>, private val showButton: Boole
     }
 
     fun add(doctorModel: DoctorModel) {
-        values!!.add(doctorModel)
+        values.add(doctorModel)
         this.notifyDataSetChanged()
     }
 
@@ -108,7 +106,9 @@ class DoctorAdapter(items: ArrayList<DoctorModel>, private val showButton: Boole
                 mButton.visibility = View.VISIBLE
             } else
                 mButton.visibility = View.GONE
-            mButton.setOnClickListener { if (fragmentListener != null) fragmentListener!!.updateAdapter(item) }
+            mButton.setOnClickListener {
+                if (fragmentListener != null) fragmentListener!!.updateAdapter(item!!)
+            }
             view.setOnClickListener { v -> if (mListener != null) mListener!!.onClick(v, layoutPosition) }
         }
     }

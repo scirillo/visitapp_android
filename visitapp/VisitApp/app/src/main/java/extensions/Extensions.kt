@@ -10,13 +10,16 @@ import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
+import android.support.annotation.StringRes
 import android.support.design.widget.TextInputLayout
+import android.support.v4.app.FragmentManager
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.AppCompatEditText
 import android.util.TypedValue
 import android.view.*
 import android.widget.Button
 import com.charly.visitapp.R
+import com.vistapp.visitapp.fragments.DoctorDetailFragment
 import logic.DoctorManager
 import model.DoctorModel
 import model.Location
@@ -62,6 +65,9 @@ fun View.drawable(@DrawableRes resource: Int): Drawable = ContextCompat.getDrawa
 
 fun View.color(@ColorRes resource: Int): Int = ContextCompat.getColor(context, resource)
 
+//fun View.string(@StringRes resource: Int): Int = getString(context, resource)
+
+
 fun View.actionBarSize(): Int {
     val tv = TypedValue()
     if (context.theme.resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
@@ -77,6 +83,26 @@ fun checkUserFields(email: String, password: String): LoginError? {
         return LoginError.PASSWORD_ERROR
     }
     return null
+}
+
+fun navigateToDetail(fragmentManager: FragmentManager, doctorModel: DoctorModel) {
+    navigateToDetailDoctor(fragmentManager, doctorModel, false)
+}
+
+fun navigateToAddDoctor(fragmentManager: FragmentManager) {
+    navigateToDetailDoctor(fragmentManager, true)
+}
+
+private fun navigateToDetailDoctor(fragmentManager: FragmentManager, doctorModel: DoctorModel, editable: Boolean){
+    fragmentManager.beginTransaction().replace(R.id.fragment,
+            DoctorDetailFragment.newInstance(doctorModel!!, editable, 0)).
+            addToBackStack("").commit()
+}
+
+private fun navigateToDetailDoctor(fragmentManager: FragmentManager, editable: Boolean){
+    fragmentManager.beginTransaction().replace(R.id.fragment,
+            DoctorDetailFragment.newInstance(DoctorModel(), editable, 0)).
+            addToBackStack("").commit()
 }
 
 fun hardcodedList(context: Context): ArrayList<DoctorModel> {

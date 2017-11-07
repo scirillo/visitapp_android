@@ -2,11 +2,9 @@ package ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.NavUtils
 import android.view.View
 import api.Authentication
 import com.charly.visitapp.R
-import com.vistapp.visitapp.activities.MapsActivity
 import io.realm.Realm
 import api.responses.ApiError
 import model.User
@@ -15,7 +13,6 @@ import io.realm.RealmConfiguration
 import io.realm.RealmQuery
 import models.responses.LogInResponse
 import org.jetbrains.anko.toast
-import ui.BaseActivity
 import utils.RxBus
 import ui.views.LogInView
 
@@ -29,12 +26,7 @@ class LogInActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //get user if it's already saved
-        val realmConfig = RealmConfiguration.Builder(this).deleteRealmIfMigrationNeeded().build()
-        Realm.setDefaultConfiguration(realmConfig)
-
         val realm = Realm.getDefaultInstance()
-
         val savedUser: User? = RealmQuery.createQuery(realm, User::class.java).findFirst()
         if(savedUser != null){
             startActivity(Intent(this, MainActivity::class.java))
@@ -59,11 +51,10 @@ class LogInActivity : BaseActivity() {
                     saveUser(response)
                 })
         RxBus.listen(ApiError::class.java).subscribe(
-                { error ->
-                    mView.spinner.visibility = View.INVISIBLE
+                { _ ->
+                    mView.spinner.visibility = View.GONE
                     toast(R.string.signInError)
                     saveUser(null)
-
                 })
     }
 

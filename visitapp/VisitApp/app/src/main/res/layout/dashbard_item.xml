@@ -33,7 +33,7 @@
                         android:id="@+id/item_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nombre:"
+                        android:text="@string/name"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         android:textSize="@dimen/textSize"
                         android:textStyle="bold" />
@@ -46,7 +46,7 @@
                         android:drawablePadding="15dp"
                         android:drawableRight="@drawable/ic_place_black_24dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:text="Direccion:"
+                        android:text="@string/dir"
                         android:textSize="@dimen/textSize"
                         android:textStyle="bold" />
 
@@ -55,7 +55,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:text="Hora de visita:"
+                        android:text="@string/visit_hour"
                         android:textSize="@dimen/textSize"
                         android:textStyle="bold" />
 
@@ -64,7 +64,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:text="Clinica:"
+                        android:text="@string/clinic"
                         android:textSize="@dimen/textSize"
                         android:textStyle="bold" />
 
@@ -73,7 +73,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:text="Info:"
+                        android:text="@string/info"
                         android:textSize="@dimen/textSize"
                         android:textStyle="bold" />
 

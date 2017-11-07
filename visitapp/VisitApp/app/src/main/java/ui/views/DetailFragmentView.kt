@@ -10,7 +10,7 @@ import com.vistapp.visitapp.fragments.DoctorDetailFragment
 import com.vistapp.visitapp.listeners.DateSelectedListener
 import model.DoctorModel
 import org.jetbrains.anko.*
-import ui.viewlisteners.ViewBinder
+import ui.ViewBinder
 import extensions.bold
 
 /**
@@ -31,7 +31,7 @@ class DetailFragmentView : ViewBinder<DoctorDetailFragment, DoctorModel, Boolean
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun bind(t: DoctorDetailFragment, u: DoctorModel, b: Boolean): View {
+    override fun bind(t: DoctorDetailFragment, u: DoctorModel?, b: Boolean?): View {
         return t.activity.UI {
             linearLayout {
                 orientation = LinearLayout.VERTICAL
@@ -221,8 +221,8 @@ class DetailFragmentView : ViewBinder<DoctorDetailFragment, DoctorModel, Boolean
                     }.lparams(width = matchParent, height = wrapContent)
                 }.lparams(width = matchParent, height = matchParent)
             }
-            if(!b) disableFields(b)
-            setDataFields(u)
+            if(!b!!) disableFields(b)
+            setDataFields(u!!)
         }.view
     }
 
